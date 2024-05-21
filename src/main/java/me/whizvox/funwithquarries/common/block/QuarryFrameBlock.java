@@ -6,8 +6,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -19,7 +21,10 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class QuarryFrameBlock extends Block {
 
@@ -54,7 +59,11 @@ public class QuarryFrameBlock extends Block {
 
   public QuarryFrameBlock() {
     super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE));
-    registerDefaultState(stateDefinition.any().setValue(NORTH, false).setValue(SOUTH, false).setValue(EAST, false).setValue(WEST, false).setValue(UP, false).setValue(DOWN, false));
+    registerDefaultState(stateDefinition.any()
+        .setValue(NORTH, false).setValue(SOUTH, false)
+        .setValue(EAST, false).setValue(WEST, false)
+        .setValue(UP, false).setValue(DOWN, false)
+    );
 
     for (BlockState state : stateDefinition.getPossibleStates()) {
       List<VoxelShape> shapes = new ArrayList<>();
@@ -94,7 +103,6 @@ public class QuarryFrameBlock extends Block {
       BlockState state = context.getLevel().getBlockState(pos);
       if (state.is(FWQBlocks.QUARRY_FRAME.get())) {
         finalState = finalState.setValue(fromDirection(direction), true);
-        context.getLevel().setBlockAndUpdate(pos, state.setValue(fromDirection(direction.getOpposite()), true));
       }
     }
     return finalState;
@@ -118,16 +126,41 @@ public class QuarryFrameBlock extends Block {
   }
 
   @Override
-  public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
-    BlockState updatedState = state;
+  public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos,
+                              boolean movedByPiston) {
+    if (!level.isClientSide) {
+      BlockState updatedState = state;
+      // check all sides for other frame blocks
+      for (Direction direction : Direction.values()) {
+        BlockPos otherPos = pos.relative(direction);
+        BlockState otherState = level.getBlockState(otherPos);
+        updatedState = updatedState.setValue(fromDirection(direction), otherState.is(FWQBlocks.QUARRY_FRAME.get()));
+      }
+      if (updatedState != state) {
+        level.setBlockAndUpdate(pos, updatedState);
+      }
+    }
+  }
+
+  @Override
+  public BlockState mirror(BlockState state, Mirror mirror) {
+    return switch (mirror) {
+      case NONE -> state;
+      case FRONT_BACK -> state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
+      case LEFT_RIGHT -> state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
+    };
+  }
+
+  @Override
+  public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation rotation) {
+    if (rotation == Rotation.NONE) {
+      return state;
+    }
+    BlockState newState = state;
     for (Direction direction : Direction.values()) {
-      BlockPos otherPos = pos.relative(direction);
-      BlockState otherState = level.getBlockState(otherPos);
-      updatedState = updatedState.setValue(fromDirection(direction), otherState.is(FWQBlocks.QUARRY_FRAME.get()));
+      newState = newState.setValue(fromDirection(direction), state.getValue(fromDirection(rotation.rotate(direction))));
     }
-    if (updatedState != state) {
-      level.setBlockAndUpdate(pos, updatedState);
-    }
+    return newState;
   }
 
 }
