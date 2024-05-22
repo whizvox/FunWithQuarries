@@ -23,6 +23,7 @@ public class FWQItems {
 
   public static final RegistryObject<BlockItem>
       QUARRY_CONTROLLER = registerBlockItem(FWQBlocks.QUARRY_CONTROLLER),
-      QUARRY_FRAME = registerBlockItem(FWQBlocks.QUARRY_FRAME);
+      QUARRY_FRAME = registerBlockItem(FWQBlocks.QUARRY_FRAME),
+      MACHINE_BLOCK = registerBlockItem(FWQBlocks.MACHINE_BLOCK);
 
 }

@@ -24,6 +24,7 @@ public class FWQCreativeTab {
       .displayItems((params, output) -> {
         output.accept(FWQItems.QUARRY_CONTROLLER.get());
         output.accept(FWQItems.QUARRY_FRAME.get());
+        output.accept(FWQItems.MACHINE_BLOCK.get());
       })
       .build()
   );

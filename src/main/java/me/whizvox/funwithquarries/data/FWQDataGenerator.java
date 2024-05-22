@@ -3,6 +3,7 @@ package me.whizvox.funwithquarries.data;
 import me.whizvox.funwithquarries.FunWithQuarries;
 import me.whizvox.funwithquarries.data.client.FWQBlockStateProvider;
 import me.whizvox.funwithquarries.data.client.FWQLanguageProvider;
+import me.whizvox.funwithquarries.data.server.FWQBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -24,6 +25,7 @@ public class FWQDataGenerator {
 
     gen.addProvider(includeClient, new FWQLanguageProvider(output));
     gen.addProvider(includeClient, new FWQBlockStateProvider(output, fileHelper));
+    gen.addProvider(includeServer, new FWQBlockTagsProvider(output, lookupProvider, fileHelper));
   }
 
 }

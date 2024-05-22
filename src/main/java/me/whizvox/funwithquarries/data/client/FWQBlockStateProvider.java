@@ -1,17 +1,41 @@
 package me.whizvox.funwithquarries.data.client;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
+import me.whizvox.funwithquarries.common.block.QuarryControllerBlock;
 import me.whizvox.funwithquarries.common.block.QuarryFrameBlock;
 import me.whizvox.funwithquarries.common.registry.FWQBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FWQBlockStateProvider extends BlockStateProvider {
 
   public FWQBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
     super(output, FunWithQuarries.MOD_ID, exFileHelper);
+  }
+
+  private void registerQuarryController() {
+    Map<QuarryControllerBlock.State, ModelFile> models = new HashMap<>();
+    var builder = getVariantBuilder(FWQBlocks.QUARRY_CONTROLLER.get()).partialState();
+    for (QuarryControllerBlock.State state : QuarryControllerBlock.State.values()) {
+      for (Direction direction : HorizontalDirectionalBlock.FACING.getPossibleValues()) {
+        ModelFile model = models.computeIfAbsent(state, s ->  models().orientable("quarry_controller_" + s.getSerializedName(), modLoc("block/machine_side"), modLoc("block/quarry_controller_" + s.getSerializedName()), modLoc("block/machine_side")));
+        builder
+            .with(QuarryControllerBlock.STATE, state)
+            .with(QuarryControllerBlock.FACING, direction.getOpposite())
+            .modelForState()
+            .modelFile(model)
+            .rotationY((int) direction.toYRot())
+            .addModel();
+      }
+    }
+    simpleBlockItem(FWQBlocks.QUARRY_CONTROLLER.get(), models.get(QuarryControllerBlock.State.OFF));
   }
 
   private void registerQuarryFrame() {
@@ -32,7 +56,9 @@ public class FWQBlockStateProvider extends BlockStateProvider {
 
   @Override
   protected void registerStatesAndModels() {
+    registerQuarryController();
     registerQuarryFrame();
+    simpleBlockWithItem(FWQBlocks.MACHINE_BLOCK.get(), models().cubeAll("machine_block", modLoc("block/machine_side")));
   }
 
 }

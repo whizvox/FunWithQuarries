@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,state=error": {
+      "model": "funwithquarries:block/quarry_controller_error",
+      "y": 90
+    },
+    "facing=east,state=off": {
+      "model": "funwithquarries:block/quarry_controller_off",
+      "y": 90
+    },
+    "facing=east,state=on": {
+      "model": "funwithquarries:block/quarry_controller_on",
+      "y": 90
+    },
+    "facing=north,state=error": {
+      "model": "funwithquarries:block/quarry_controller_error"
+    },
+    "facing=north,state=off": {
+      "model": "funwithquarries:block/quarry_controller_off"
+    },
+    "facing=north,state=on": {
+      "model": "funwithquarries:block/quarry_controller_on"
+    },
+    "facing=south,state=error": {
+      "model": "funwithquarries:block/quarry_controller_error",
+      "y": 180
+    },
+    "facing=south,state=off": {
+      "model": "funwithquarries:block/quarry_controller_off",
+      "y": 180
+    },
+    "facing=south,state=on": {
+      "model": "funwithquarries:block/quarry_controller_on",
+      "y": 180
+    },
+    "facing=west,state=error": {
+      "model": "funwithquarries:block/quarry_controller_error",
+      "y": 270
+    },
+    "facing=west,state=off": {
+      "model": "funwithquarries:block/quarry_controller_off",
+      "y": 270
+    },
+    "facing=west,state=on": {
+      "model": "funwithquarries:block/quarry_controller_on",
+      "y": 270
+    }
+  }
+}

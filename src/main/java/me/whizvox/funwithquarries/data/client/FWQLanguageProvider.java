@@ -16,6 +16,7 @@ public class FWQLanguageProvider extends LanguageProvider {
   protected void addTranslations() {
     addBlock(FWQBlocks.QUARRY_CONTROLLER, "Quarry Controller");
     addBlock(FWQBlocks.QUARRY_FRAME, "Quarry Frame");
+    addBlock(FWQBlocks.MACHINE_BLOCK, "Machine Block");
     add(FWQStrings.MAIN_CREATIVE_TAB, "Fun with Quarries");
   }
 

@@ -123,3 +123,6 @@ run-data/
 
 # Blockbench models
 *.bbmodel
+
+# Photoshop files
+*.psd
