@@ -26,8 +26,7 @@ public class DroneFlyingMoveControl extends MoveControl {
       double deltaZ = wantedZ - mob.getZ();
       double distSqr = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
       if (distSqr < Mth.EPSILON) {
-        mob.setYya(0);
-        mob.setZza(0);
+        mob.setDeltaMovement(Vec3.ZERO);
       } else {
         // snap to target point if close enough
         if (distSqr < 0.2) {
@@ -45,8 +44,7 @@ public class DroneFlyingMoveControl extends MoveControl {
         mob.setDeltaMovement(new Vec3(deltaX, deltaY, deltaZ).normalize().scale(speed));
       }
     } else if (operation == Operation.WAIT) {
-      mob.setYya(0);
-      mob.setZza(0);
+      mob.setDeltaMovement(Vec3.ZERO);
     }
   }
 

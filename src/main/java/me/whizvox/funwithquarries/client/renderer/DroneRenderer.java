@@ -20,7 +20,8 @@ public class DroneRenderer extends EntityRenderer<Drone> {
 
   private static final ResourceLocation
       DRONE_TEXTURE_LOCATION = new ResourceLocation(FunWithQuarries.MOD_ID, "textures/entity/drone.png"),
-      LASER_TEXTURE_LOCATION = new ResourceLocation(FunWithQuarries.MOD_ID, "textures/entity/laser.png");
+      RED_LASER_TEXTURE_LOCATION = new ResourceLocation(FunWithQuarries.MOD_ID, "textures/entity/laser.png"),
+      BLUE_LASER_TEXTURE_LOCATION = new ResourceLocation(FunWithQuarries.MOD_ID, "textures/entity/blue_laser.png");
 
   private final DroneModel droneModel;
   private final LaserModel laserModel;
@@ -44,12 +45,13 @@ public class DroneRenderer extends EntityRenderer<Drone> {
     VertexConsumer vertexConsumer = buffer.getBuffer(droneModel.renderType(DRONE_TEXTURE_LOCATION));
     droneModel.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
     poseStack.popPose();
-    if (drone.getTargetType() == Drone.TargetType.BREAK || drone.getTargetType() == Drone.TargetType.PLACE) {
+    Drone.TargetType type = drone.getTargetType();
+    if (type == Drone.TargetType.BREAK || type == Drone.TargetType.PLACE) {
       // draw a bunch of 1 block long laser segments pointing from the drone's position towards the target position
       Vec3 targetPos = drone.getTargetPosition().getCenter();
       Vec3 currentPos = drone.blockPosition().getCenter();
       Vec3 direction = targetPos.subtract(currentPos).normalize();
-      vertexConsumer = buffer.getBuffer(laserModel.renderType(LASER_TEXTURE_LOCATION));
+      vertexConsumer = buffer.getBuffer(laserModel.renderType(type == Drone.TargetType.BREAK ? BLUE_LASER_TEXTURE_LOCATION : RED_LASER_TEXTURE_LOCATION));
       poseStack.pushPose();
       // easiest way to do this is to rotate the world in the direction of the target position
       poseStack.rotateAround(new Quaternionf().rotateTo(new Vector3f(0, 1, 0), direction.toVector3f()), 0, 0.4f, 0);

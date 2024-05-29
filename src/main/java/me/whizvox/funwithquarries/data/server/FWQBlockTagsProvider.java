@@ -25,6 +25,9 @@ public class FWQBlockTagsProvider extends BlockTagsProvider {
         .add(FWQBlocks.MACHINE_BLOCK.get());
     tag(BlockTags.MINEABLE_WITH_AXE)
         .add(FWQBlocks.QUARRY_FRAME.get());
+    //noinspection unchecked
+    tag(FWQBlocks.TAG_MINEABLE)
+        .addTags(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.MINEABLE_WITH_AXE, BlockTags.MINEABLE_WITH_SHOVEL, BlockTags.MINEABLE_WITH_HOE);
   }
 
 }

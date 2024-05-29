@@ -24,6 +24,6 @@ public class FWQEntities {
     ENTITIES.register(bus);
   }
 
-  public static final RegistryObject<EntityType<Drone>> DRONE = register("drone", () -> EntityType.Builder.of(Drone::new, MobCategory.MISC).fireImmune().sized(0.8f, 0.8f));
+  public static final RegistryObject<EntityType<Drone>> DRONE = register("drone", () -> EntityType.Builder.of(Drone::new, MobCategory.MISC).fireImmune().sized(0.6f, 0.6f));
 
 }

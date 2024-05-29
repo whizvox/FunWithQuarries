@@ -53,7 +53,7 @@ public class DroneDebugToolItem extends Item {
             Drone drone = getDrone(stack, (ServerLevel) level);
             if (drone != null) {
               if (mode == Mode.SET_MOVE_TARGET) {
-                drone.setTarget(Drone.TargetType.MOVE, clickPos.relative(context.getClickedFace()));
+                drone.setMovePosition(clickPos.relative(context.getClickedFace()));
               } else if (mode == Mode.SET_BREAK_TARGET) {
                 drone.setTarget(Drone.TargetType.BREAK, clickPos);
               } else if (mode == Mode.SET_PLACE_TARGET) {

@@ -2,8 +2,10 @@ package me.whizvox.funwithquarries.common.registry;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
 import me.whizvox.funwithquarries.common.item.DroneDebugToolItem;
+import me.whizvox.funwithquarries.common.item.UniversalDiggerItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -41,12 +43,15 @@ public class FWQItems {
     ITEMS.register(bus);
   }
 
-  public static final RegistryObject<DroneDebugToolItem> DRONE_DEBUG_TOOL = register("drone_debug_tool", DroneDebugToolItem::new);
-
   public static final RegistryObject<BlockItem>
       QUARRY_CONTROLLER = registerBlockItem(FWQBlocks.QUARRY_CONTROLLER),
       DRONE_STATION = registerBlockItem(FWQBlocks.DRONE_STATION),
       QUARRY_FRAME = registerBlockItem(FWQBlocks.QUARRY_FRAME),
       MACHINE_BLOCK = registerBlockItem(FWQBlocks.MACHINE_BLOCK);
+
+  public static final RegistryObject<DroneDebugToolItem> DRONE_DEBUG_TOOL = ITEMS.register("drone_debug_tool", DroneDebugToolItem::new);
+  public static final RegistryObject<UniversalDiggerItem> UNIVERSAL_DIGGER_IRON = ITEMS.register("universal_digger_iron", () -> new UniversalDiggerItem(Tiers.IRON));
+  public static final RegistryObject<UniversalDiggerItem> UNIVERSAL_DIGGER_DIAMOND = ITEMS.register("universal_digger_diamond", () -> new UniversalDiggerItem(Tiers.DIAMOND));
+  public static final RegistryObject<UniversalDiggerItem> UNIVERSAL_DIGGER_NETHERITE = ITEMS.register("universal_digger_netherite", () -> new UniversalDiggerItem(Tiers.NETHERITE));
 
 }

@@ -1,9 +1,9 @@
 package me.whizvox.funwithquarries.common.entity.ai;
 
 import me.whizvox.funwithquarries.common.entity.Drone;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.phys.Vec3;
 
 public class FlyToMoveTargetGoal extends Goal {
 
@@ -15,14 +15,17 @@ public class FlyToMoveTargetGoal extends Goal {
 
   @Override
   public boolean canUse() {
-    BlockPos targetPos = drone.getTargetPosition();
-    return drone.getTargetType() == Drone.TargetType.MOVE && drone.position().distanceToSqr(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5) > 0.1;
+    return drone.getTargetType() == Drone.TargetType.NONE && drone.shouldMove();
   }
 
   @Override
   public void tick() {
-    BlockPos targetPos = drone.getTargetPosition();
-    drone.getMoveControl().setWantedPosition(targetPos.getX() + 0.5, targetPos.getY() + 0.1, targetPos.getZ() + 0.5, drone.getAttributeValue(Attributes.FLYING_SPEED));
+    if (drone.isAtMovePosition()) {
+      drone.removeMovePosition();
+    } else {
+      Vec3 movePos = drone.getMovePosition().getCenter();
+      drone.getMoveControl().setWantedPosition(movePos.x, movePos.y - 0.4, movePos.z, drone.getAttributeValue(Attributes.FLYING_SPEED));
+    }
   }
 
 }

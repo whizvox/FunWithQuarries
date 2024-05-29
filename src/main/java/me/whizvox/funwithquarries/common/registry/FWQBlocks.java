@@ -4,6 +4,9 @@ import me.whizvox.funwithquarries.FunWithQuarries;
 import me.whizvox.funwithquarries.common.block.DroneStationBlock;
 import me.whizvox.funwithquarries.common.block.QuarryControllerBlock;
 import me.whizvox.funwithquarries.common.block.QuarryFrameBlock;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -16,6 +19,7 @@ public class FWQBlocks {
 
   private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, FunWithQuarries.MOD_ID);
 
+  public static final TagKey<Block> TAG_MINEABLE = BlockTags.create(new ResourceLocation(FunWithQuarries.MOD_ID, "mineable"));
   public static final BlockBehaviour.Properties MACHINE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(1.5F, 6.0F);
 
   public static void register(IEventBus bus) {

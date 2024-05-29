@@ -2,9 +2,9 @@ package me.whizvox.funwithquarries.data.client;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
 import me.whizvox.funwithquarries.common.item.DroneDebugToolItem;
+import me.whizvox.funwithquarries.common.registry.FWQBlocks;
 import me.whizvox.funwithquarries.common.registry.FWQItems;
 import me.whizvox.funwithquarries.common.util.FWQStrings;
-import me.whizvox.funwithquarries.common.registry.FWQBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 

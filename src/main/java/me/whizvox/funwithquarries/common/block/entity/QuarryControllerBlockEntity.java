@@ -2,7 +2,6 @@ package me.whizvox.funwithquarries.common.block.entity;
 
 import me.whizvox.funwithquarries.common.block.QuarryControllerBlock;
 import me.whizvox.funwithquarries.common.registry.FWQBlockEntities;
-import me.whizvox.funwithquarries.common.registry.FWQBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.entity.BlockEntity;

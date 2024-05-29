@@ -1,5 +1,6 @@
 package me.whizvox.funwithquarries;
 
+import com.mojang.authlib.GameProfile;
 import com.mojang.logging.LogUtils;
 import me.whizvox.funwithquarries.client.FWQClientEvents;
 import me.whizvox.funwithquarries.common.config.Config;
@@ -13,11 +14,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+import java.util.UUID;
+
 @Mod(FunWithQuarries.MOD_ID)
 public class FunWithQuarries {
 
   public static final String MOD_ID = "funwithquarries";
   private static final Logger LOGGER = LogUtils.getLogger();
+
+  public static final GameProfile FAKE_PLAYER_PROFILE = new GameProfile(UUID.fromString("e6afb63e-8d54-4f56-a848-2accddc5eca3"), "[" + MOD_ID + "]");
 
   public FunWithQuarries() {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
