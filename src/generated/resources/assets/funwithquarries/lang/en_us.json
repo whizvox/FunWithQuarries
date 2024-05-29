@@ -1,6 +1,8 @@
 {
+  "block.funwithquarries.drone_station": "Drone Station",
   "block.funwithquarries.machine_block": "Machine Block",
   "block.funwithquarries.quarry_controller": "Quarry Controller",
   "block.funwithquarries.quarry_frame": "Quarry Frame",
+  "item.funwithquarries.drone_debug_tool": "Drone Debug Tool",
   "itemGroup.funwithquarries.main": "Fun with Quarries"
 }

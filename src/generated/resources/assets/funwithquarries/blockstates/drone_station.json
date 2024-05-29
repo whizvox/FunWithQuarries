@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "funwithquarries:block/drone_station_closed",
+      "x": 90
+    },
+    "facing=down,open=true": {
+      "model": "funwithquarries:block/drone_station_open",
+      "x": 90
+    },
+    "facing=east,open=false": {
+      "model": "funwithquarries:block/drone_station_closed",
+      "y": 90
+    },
+    "facing=east,open=true": {
+      "model": "funwithquarries:block/drone_station_open",
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "funwithquarries:block/drone_station_closed"
+    },
+    "facing=north,open=true": {
+      "model": "funwithquarries:block/drone_station_open"
+    },
+    "facing=south,open=false": {
+      "model": "funwithquarries:block/drone_station_closed",
+      "y": 180
+    },
+    "facing=south,open=true": {
+      "model": "funwithquarries:block/drone_station_open",
+      "y": 180
+    },
+    "facing=up,open=false": {
+      "model": "funwithquarries:block/drone_station_closed",
+      "x": 270
+    },
+    "facing=up,open=true": {
+      "model": "funwithquarries:block/drone_station_open",
+      "x": 270
+    },
+    "facing=west,open=false": {
+      "model": "funwithquarries:block/drone_station_closed",
+      "y": 270
+    },
+    "facing=west,open=true": {
+      "model": "funwithquarries:block/drone_station_open",
+      "y": 270
+    }
+  }
+}

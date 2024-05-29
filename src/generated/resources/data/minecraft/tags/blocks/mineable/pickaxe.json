@@ -1,6 +1,7 @@
 {
   "values": [
     "funwithquarries:quarry_controller",
+    "funwithquarries:drone_station",
     "funwithquarries:machine_block"
   ]
 }

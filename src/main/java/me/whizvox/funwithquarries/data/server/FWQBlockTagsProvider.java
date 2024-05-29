@@ -21,6 +21,7 @@ public class FWQBlockTagsProvider extends BlockTagsProvider {
   protected void addTags(HolderLookup.Provider provider) {
     tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .add(FWQBlocks.QUARRY_CONTROLLER.get())
+        .add(FWQBlocks.DRONE_STATION.get())
         .add(FWQBlocks.MACHINE_BLOCK.get());
     tag(BlockTags.MINEABLE_WITH_AXE)
         .add(FWQBlocks.QUARRY_FRAME.get());
