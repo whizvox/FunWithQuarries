@@ -83,9 +83,9 @@ public class Drone extends Mob {
   public enum TargetType {
 
     NONE,
-    MOVE_DESTINATION,
-    BLOCK_OBSTACLE,
-    FRAME_PLACEMENT;
+    MOVE,
+    BREAK,
+    PLACE;
 
     public final byte byteValue;
 
@@ -95,9 +95,9 @@ public class Drone extends Mob {
 
     public static TargetType from(byte byteValue) {
       return switch (byteValue) {
-        case 1 -> MOVE_DESTINATION;
-        case 2 -> BLOCK_OBSTACLE;
-        case 3 -> FRAME_PLACEMENT;
+        case 1 -> MOVE;
+        case 2 -> BREAK;
+        case 3 -> PLACE;
         default -> NONE;
       };
     }

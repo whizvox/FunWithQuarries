@@ -16,7 +16,7 @@ public class FlyToMoveTargetGoal extends Goal {
   @Override
   public boolean canUse() {
     BlockPos targetPos = drone.getTargetPosition();
-    return drone.getTargetType() == Drone.TargetType.MOVE_DESTINATION && drone.position().distanceToSqr(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5) > 0.1;
+    return drone.getTargetType() == Drone.TargetType.MOVE && drone.position().distanceToSqr(targetPos.getX() + 0.5, targetPos.getY() + 0.5, targetPos.getZ() + 0.5) > 0.1;
   }
 
   @Override

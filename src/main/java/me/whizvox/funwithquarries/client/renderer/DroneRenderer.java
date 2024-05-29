@@ -7,6 +7,7 @@ import me.whizvox.funwithquarries.client.model.DroneModel;
 import me.whizvox.funwithquarries.client.model.LaserModel;
 import me.whizvox.funwithquarries.common.entity.Drone;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -43,7 +44,7 @@ public class DroneRenderer extends EntityRenderer<Drone> {
     VertexConsumer vertexConsumer = buffer.getBuffer(droneModel.renderType(DRONE_TEXTURE_LOCATION));
     droneModel.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
     poseStack.popPose();
-    if (drone.getTargetType() == Drone.TargetType.BLOCK_OBSTACLE || drone.getTargetType() == Drone.TargetType.FRAME_PLACEMENT) {
+    if (drone.getTargetType() == Drone.TargetType.BREAK || drone.getTargetType() == Drone.TargetType.PLACE) {
       // draw a bunch of 1 block long laser segments pointing from the drone's position towards the target position
       Vec3 targetPos = drone.getTargetPosition().getCenter();
       Vec3 currentPos = drone.blockPosition().getCenter();
@@ -67,6 +68,13 @@ public class DroneRenderer extends EntityRenderer<Drone> {
       poseStack.popPose();
     }
     super.render(drone, yaw, partialTick, poseStack, buffer, packedLight);
+  }
+
+  @Override
+  public boolean shouldRender(Drone drone, Frustum camera, double camX, double camY, double camZ) {
+    Drone.TargetType type = drone.getTargetType();
+    // force the drone to be drawn if lasers are drawing from it
+    return super.shouldRender(drone, camera, camX, camY, camZ) || type == Drone.TargetType.BREAK || type == Drone.TargetType.PLACE;
   }
 
 }

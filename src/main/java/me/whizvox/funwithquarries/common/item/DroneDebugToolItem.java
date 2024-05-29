@@ -44,20 +44,20 @@ public class DroneDebugToolItem extends Item {
               if (prevDrone != null) {
                 prevDrone.kill();
               }
-              Drone drone = FWQEntities.DRONE.get().create(level);
-              drone.setPos(clickPos.relative(context.getClickedFace()).getCenter());
-              level.addFreshEntity(drone);
-              setDrone(stack, drone);
             }
+            Drone drone = FWQEntities.DRONE.get().create(level);
+            drone.setPos(clickPos.relative(context.getClickedFace()).getCenter());
+            level.addFreshEntity(drone);
+            setDrone(stack, drone);
           } else {
             Drone drone = getDrone(stack, (ServerLevel) level);
             if (drone != null) {
               if (mode == Mode.SET_MOVE_TARGET) {
-                drone.setTarget(Drone.TargetType.MOVE_DESTINATION, clickPos.relative(context.getClickedFace()));
+                drone.setTarget(Drone.TargetType.MOVE, clickPos.relative(context.getClickedFace()));
               } else if (mode == Mode.SET_BREAK_TARGET) {
-                drone.setTarget(Drone.TargetType.BLOCK_OBSTACLE, clickPos);
+                drone.setTarget(Drone.TargetType.BREAK, clickPos);
               } else if (mode == Mode.SET_PLACE_TARGET) {
-                drone.setTarget(Drone.TargetType.FRAME_PLACEMENT, clickPos);
+                drone.setTarget(Drone.TargetType.PLACE, clickPos);
               } else {
                 drone.removeTarget();
               }
