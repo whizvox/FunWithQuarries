@@ -23,11 +23,15 @@ public class FWQLanguageProvider extends LanguageProvider {
     addBlock(FWQBlocks.MACHINE_BLOCK, "Machine Block");
     add(FWQStrings.CREATIVE_TAB_MAIN, "Fun with Quarries");
     add(FWQStrings.MSG_DRONE_DEBUG_CURRENT_MODE, "Current mode: %s");
+    add(FWQStrings.MSG_DRONE_DEBUG_CORNER_NOT_SET, "First corner has not been set");
+    add(FWQStrings.MSG_DRONE_DEBUG_INVALID_AREA, "Area is too large or too small: %s");
     add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SPAWN), "Spawn Drone");
     add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_MOVE_TARGET), "Set Movement Target");
     add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_BREAK_TARGET), "Set Break Target");
     add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_PLACE_TARGET), "Set Place Target");
     add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.REMOVE_TARGET), "Remove Target");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_CORNER_1), "Set First Corner");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_CORNER_2), "Set Second Corner");
   }
 
 }

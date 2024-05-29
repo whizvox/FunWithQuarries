@@ -2,6 +2,7 @@ package me.whizvox.funwithquarries.common.block.entity;
 
 import me.whizvox.funwithquarries.common.block.QuarryControllerBlock;
 import me.whizvox.funwithquarries.common.registry.FWQBlockEntities;
+import me.whizvox.funwithquarries.common.util.QuarryUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -71,24 +72,7 @@ public class QuarryControllerBlockEntity extends TickableBlockEntity {
     }
     frameCorner1 = worldPosition.offset(corner1.x, -1, corner1.y);
     frameCorner2 = worldPosition.offset(corner2.x, frameHeight - 1, corner2.y);
-    for (int x = frameCorner1.getX(); x <= frameCorner2.getX(); x++) {
-      framePositions.add(new BlockPos(x, frameCorner1.getY(), frameCorner1.getZ()));
-      framePositions.add(new BlockPos(x, frameCorner1.getY(), frameCorner2.getZ()));
-      framePositions.add(new BlockPos(x, frameCorner2.getY(), frameCorner1.getZ()));
-      framePositions.add(new BlockPos(x, frameCorner2.getY(), frameCorner2.getZ()));
-    }
-    for (int z = frameCorner1.getZ() + 1; z < frameCorner2.getZ(); z++) {
-      framePositions.add(new BlockPos(frameCorner1.getX(), frameCorner1.getY(), z));
-      framePositions.add(new BlockPos(frameCorner1.getX(), frameCorner2.getY(), z));
-      framePositions.add(new BlockPos(frameCorner2.getX(), frameCorner1.getY(), z));
-      framePositions.add(new BlockPos(frameCorner2.getX(), frameCorner2.getY(), z));
-    }
-    for (int y = frameCorner1.getY() + 1; y < frameCorner2.getY(); y++) {
-      framePositions.add(new BlockPos(frameCorner1.getX(), y, frameCorner1.getZ()));
-      framePositions.add(new BlockPos(frameCorner1.getX(), y, frameCorner2.getZ()));
-      framePositions.add(new BlockPos(frameCorner2.getX(), y, frameCorner1.getZ()));
-      framePositions.add(new BlockPos(frameCorner2.getX(), y, frameCorner2.getZ()));
-    }
+    QuarryUtils.calculateFramePositions(frameCorner1, frameCorner2, framePositions);
     // sort in order from bottom-up, then by how close it is to the controller
     framePositions.sort(Comparator.comparing(Vec3i::getY).thenComparing(pos -> pos.distSqr(worldPosition)));
   }
