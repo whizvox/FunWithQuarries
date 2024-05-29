@@ -4,5 +4,11 @@
   "block.funwithquarries.quarry_controller": "Quarry Controller",
   "block.funwithquarries.quarry_frame": "Quarry Frame",
   "item.funwithquarries.drone_debug_tool": "Drone Debug Tool",
-  "itemGroup.funwithquarries.main": "Fun with Quarries"
+  "itemGroup.funwithquarries.main": "Fun with Quarries",
+  "message.funwithquarries.drone_debug_tool.current_mode": "Current mode: %s",
+  "tooltip.funwithquarries.drone_debug_tool.mode.remove_target": "Remove Target",
+  "tooltip.funwithquarries.drone_debug_tool.mode.set_break_target": "Set Break Target",
+  "tooltip.funwithquarries.drone_debug_tool.mode.set_move_target": "Set Movement Target",
+  "tooltip.funwithquarries.drone_debug_tool.mode.set_place_target": "Set Place Target",
+  "tooltip.funwithquarries.drone_debug_tool.mode.spawn": "Spawn Drone"
 }

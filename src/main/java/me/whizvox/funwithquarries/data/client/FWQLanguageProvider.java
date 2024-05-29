@@ -1,6 +1,7 @@
 package me.whizvox.funwithquarries.data.client;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
+import me.whizvox.funwithquarries.common.item.DroneDebugToolItem;
 import me.whizvox.funwithquarries.common.registry.FWQItems;
 import me.whizvox.funwithquarries.common.util.FWQStrings;
 import me.whizvox.funwithquarries.common.registry.FWQBlocks;
@@ -20,7 +21,13 @@ public class FWQLanguageProvider extends LanguageProvider {
     addBlock(FWQBlocks.DRONE_STATION, "Drone Station");
     addBlock(FWQBlocks.QUARRY_FRAME, "Quarry Frame");
     addBlock(FWQBlocks.MACHINE_BLOCK, "Machine Block");
-    add(FWQStrings.MAIN_CREATIVE_TAB, "Fun with Quarries");
+    add(FWQStrings.CREATIVE_TAB_MAIN, "Fun with Quarries");
+    add(FWQStrings.MSG_DRONE_DEBUG_CURRENT_MODE, "Current mode: %s");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SPAWN), "Spawn Drone");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_MOVE_TARGET), "Set Movement Target");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_BREAK_TARGET), "Set Break Target");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.SET_PLACE_TARGET), "Set Place Target");
+    add(FWQStrings.droneDebugToolMode(DroneDebugToolItem.Mode.REMOVE_TARGET), "Remove Target");
   }
 
 }

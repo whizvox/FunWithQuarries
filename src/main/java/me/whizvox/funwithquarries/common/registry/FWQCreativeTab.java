@@ -19,7 +19,7 @@ public class FWQCreativeTab {
   }
 
   public static final RegistryObject<CreativeModeTab> MAIN = TABS.register("main", () -> CreativeModeTab.builder()
-      .title(Component.translatable(FWQStrings.MAIN_CREATIVE_TAB))
+      .title(Component.translatable(FWQStrings.CREATIVE_TAB_MAIN))
       .icon(() -> new ItemStack(FWQItems.QUARRY_CONTROLLER.get()))
       .displayItems((params, output) -> FWQItems.registeredItems().forEach(regObj -> output.accept(regObj.get())))
       .build()

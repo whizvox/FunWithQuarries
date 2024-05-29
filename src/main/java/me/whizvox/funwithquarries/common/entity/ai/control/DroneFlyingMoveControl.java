@@ -29,13 +29,14 @@ public class DroneFlyingMoveControl extends MoveControl {
         mob.setYya(0);
         mob.setZza(0);
       } else {
-        float speed;
-        // speed gets slower as mob approaches wanted point
+        // snap to target point if close enough
         if (distSqr < 0.2) {
           mob.moveTo(wantedX, wantedY, wantedZ);
           mob.setDeltaMovement(0, 0, 0);
           return;
         }
+        float speed;
+        // speed gets slower as mob approaches wanted point
         if (distSqr < MIN_DIST_SQR) {
           speed = (float) ((mob.getAttribute(Attributes.FLYING_SPEED).getValue() / MIN_DIST) * Math.sqrt(distSqr));
         } else {

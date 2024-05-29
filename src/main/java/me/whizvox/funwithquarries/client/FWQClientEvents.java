@@ -1,6 +1,7 @@
 package me.whizvox.funwithquarries.client;
 
 import me.whizvox.funwithquarries.client.model.DroneModel;
+import me.whizvox.funwithquarries.client.model.LaserModel;
 import me.whizvox.funwithquarries.client.renderer.DroneRenderer;
 import me.whizvox.funwithquarries.common.registry.FWQEntities;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -19,6 +20,7 @@ public class FWQClientEvents {
 
   public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
     event.registerLayerDefinition(DroneModel.LAYER_LOCATION, DroneModel::createBodyLayer);
+    event.registerLayerDefinition(LaserModel.LAYER_LOCATION, LaserModel::createBodyLayer);
   }
 
 }
