@@ -1,8 +1,8 @@
 package me.whizvox.funwithquarries.common.entity;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
-import me.whizvox.funwithquarries.common.entity.ai.goal.FlyToMoveTargetGoal;
 import me.whizvox.funwithquarries.common.entity.ai.control.DroneFlyingMoveControl;
+import me.whizvox.funwithquarries.common.entity.ai.goal.FlyToMoveTargetGoal;
 import me.whizvox.funwithquarries.common.registry.FWQBlocks;
 import me.whizvox.funwithquarries.common.registry.FWQItems;
 import me.whizvox.funwithquarries.common.util.QuarryUtils;

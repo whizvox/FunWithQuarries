@@ -2,22 +2,30 @@ package me.whizvox.funwithquarries.common.block.entity;
 
 import it.unimi.dsi.fastutil.Pair;
 import me.whizvox.funwithquarries.common.block.QuarryControllerBlock;
+import me.whizvox.funwithquarries.common.menu.QuarryControllerMenu;
 import me.whizvox.funwithquarries.common.registry.FWQBlockEntities;
 import me.whizvox.funwithquarries.common.registry.FWQBlocks;
+import me.whizvox.funwithquarries.common.util.FWQLang;
 import me.whizvox.funwithquarries.common.util.QuarryUtils;
 import me.whizvox.funwithquarries.common.util.StructureBlockValidator;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
 import java.util.*;
 import java.util.stream.Stream;
 
-public class QuarryControllerBlockEntity extends TickableBlockEntity {
+public class QuarryControllerBlockEntity extends TickableBlockEntity implements MenuProvider {
 
   public static final StructureBlockValidator IS_QUARRY_COMPONENT = (level, pos, state) -> state.is(FWQBlocks.TAG_QUARRY_COMPONENT);
 
@@ -251,6 +259,17 @@ public class QuarryControllerBlockEntity extends TickableBlockEntity {
         attemptReformStructure();
       }
     }
+  }
+
+  @Override
+  public Component getDisplayName() {
+    return FWQLang.CONTAINER_QUARRY_CONTROLLER;
+  }
+
+  @Nullable
+  @Override
+  public AbstractContainerMenu createMenu(int containerId, Inventory playerInv, Player player) {
+    return new QuarryControllerMenu(containerId, playerInv, this);
   }
 
 }

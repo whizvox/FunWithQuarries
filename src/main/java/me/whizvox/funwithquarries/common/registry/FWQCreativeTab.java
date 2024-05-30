@@ -1,9 +1,8 @@
 package me.whizvox.funwithquarries.common.registry;
 
 import me.whizvox.funwithquarries.FunWithQuarries;
-import me.whizvox.funwithquarries.common.util.FWQStrings;
+import me.whizvox.funwithquarries.common.util.FWQLang;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,7 +18,7 @@ public class FWQCreativeTab {
   }
 
   public static final RegistryObject<CreativeModeTab> MAIN = TABS.register("main", () -> CreativeModeTab.builder()
-      .title(Component.translatable(FWQStrings.CREATIVE_TAB_MAIN))
+      .title(FWQLang.CREATIVE_TAB_MAIN)
       .icon(() -> new ItemStack(FWQItems.QUARRY_CONTROLLER.get()))
       .displayItems((params, output) -> FWQItems.registeredItems().forEach(regObj -> output.accept(regObj.get())))
       .build()

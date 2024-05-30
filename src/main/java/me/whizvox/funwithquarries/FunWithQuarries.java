@@ -34,6 +34,7 @@ public class FunWithQuarries {
     FWQBlockEntities.register(modBus);
     FWQEntities.register(modBus);
     FWQCreativeTab.register(modBus);
+    FWQMenus.register(modBus);
     FWQClientEvents.register(modBus, forgeBus);
     modBus.addListener(this::registerGlobalAttributes);
   }

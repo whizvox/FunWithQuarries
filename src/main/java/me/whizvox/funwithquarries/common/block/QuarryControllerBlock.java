@@ -6,9 +6,11 @@ import me.whizvox.funwithquarries.common.registry.FWQBlockEntities;
 import me.whizvox.funwithquarries.common.registry.FWQBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class QuarryControllerBlock extends BaseEntityBlock {
@@ -83,15 +86,18 @@ public class QuarryControllerBlock extends BaseEntityBlock {
     return null;
   }
 
+  @Nullable
+  @Override
+  public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+    return level.getBlockEntity(pos) instanceof QuarryControllerBlockEntity controller ? controller : null;
+  }
+
   @Override
   public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     if (!level.isClientSide) {
-      if (level.getBlockEntity(pos) instanceof QuarryControllerBlockEntity controller) {
-       controller.toggleRunning();
-      }
-      return InteractionResult.CONSUME;
+      NetworkHooks.openScreen((ServerPlayer) player, state.getMenuProvider(level, pos));
     }
-    return super.use(state, level, pos, player, hand, hit);
+    return InteractionResult.sidedSuccess(level.isClientSide);
   }
 
   public enum State implements StringRepresentable {

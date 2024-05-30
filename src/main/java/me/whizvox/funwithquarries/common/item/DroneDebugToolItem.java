@@ -2,11 +2,9 @@ package me.whizvox.funwithquarries.common.item;
 
 import me.whizvox.funwithquarries.common.entity.Drone;
 import me.whizvox.funwithquarries.common.registry.FWQEntities;
-import me.whizvox.funwithquarries.common.util.FWQStrings;
-import net.minecraft.ChatFormatting;
+import me.whizvox.funwithquarries.common.util.FWQLang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -34,7 +32,7 @@ public class DroneDebugToolItem extends Item {
       if (stack.is(this)) {
         if (player != null && player.isShiftKeyDown()) {
           Mode newMode = cycleMode(stack);
-          player.displayClientMessage(Component.translatable(FWQStrings.MSG_DRONE_DEBUG_CURRENT_MODE, Component.translatable(FWQStrings.droneDebugToolMode(newMode)).withStyle(ChatFormatting.AQUA)), true);
+          player.displayClientMessage(FWQLang.messageDroneDebugCurrentMode(newMode), true);
         } else {
           Mode mode = getMode(stack);
           BlockPos clickPos = context.getClickedPos();
@@ -66,14 +64,14 @@ public class DroneDebugToolItem extends Item {
                 BlockPos corner1 = getCorner1(stack);
                 if (corner1 == null) {
                   if (player != null) {
-                    player.displayClientMessage(Component.translatable(FWQStrings.MSG_DRONE_DEBUG_CORNER_NOT_SET), true);
+                    player.displayClientMessage(FWQLang.MSG_DRONE_DEBUG_CORNER_NOT_SET, true);
                   }
                 } else {
                   BlockPos corner2 = clickPos.relative(context.getClickedFace());
                   int area = Math.abs((corner2.getX() - corner1.getX()) * (corner2.getY() - corner1.getY()) * (corner2.getZ() - corner1.getZ()));
                   if (area < 27 || area > 16384) { // 32 x 32 x 16 or 64 x 64 x 4
                     if (player != null) {
-                      player.displayClientMessage(Component.translatable(FWQStrings.MSG_DRONE_DEBUG_INVALID_AREA, area), true);
+                      player.displayClientMessage(FWQLang.messageDroneDebugInvalidArea(area), true);
                     }
                   } else {
                     drone.setFrameBounds(corner1, corner2);
