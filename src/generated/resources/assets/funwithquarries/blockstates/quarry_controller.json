@@ -12,6 +12,10 @@
       "model": "funwithquarries:block/quarry_controller_on",
       "y": 90
     },
+    "facing=east,state=standby": {
+      "model": "funwithquarries:block/quarry_controller_standby",
+      "y": 90
+    },
     "facing=north,state=error": {
       "model": "funwithquarries:block/quarry_controller_error"
     },
@@ -20,6 +24,9 @@
     },
     "facing=north,state=on": {
       "model": "funwithquarries:block/quarry_controller_on"
+    },
+    "facing=north,state=standby": {
+      "model": "funwithquarries:block/quarry_controller_standby"
     },
     "facing=south,state=error": {
       "model": "funwithquarries:block/quarry_controller_error",
@@ -33,6 +40,10 @@
       "model": "funwithquarries:block/quarry_controller_on",
       "y": 180
     },
+    "facing=south,state=standby": {
+      "model": "funwithquarries:block/quarry_controller_standby",
+      "y": 180
+    },
     "facing=west,state=error": {
       "model": "funwithquarries:block/quarry_controller_error",
       "y": 270
@@ -43,6 +54,10 @@
     },
     "facing=west,state=on": {
       "model": "funwithquarries:block/quarry_controller_on",
+      "y": 270
+    },
+    "facing=west,state=standby": {
+      "model": "funwithquarries:block/quarry_controller_standby",
       "y": 270
     }
   }

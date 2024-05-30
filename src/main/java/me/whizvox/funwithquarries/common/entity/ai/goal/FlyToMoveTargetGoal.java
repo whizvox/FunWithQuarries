@@ -1,4 +1,4 @@
-package me.whizvox.funwithquarries.common.entity.ai;
+package me.whizvox.funwithquarries.common.entity.ai.goal;
 
 import me.whizvox.funwithquarries.common.entity.Drone;
 import net.minecraft.world.entity.ai.attributes.Attributes;

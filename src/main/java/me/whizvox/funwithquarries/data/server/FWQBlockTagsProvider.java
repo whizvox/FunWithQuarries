@@ -28,6 +28,8 @@ public class FWQBlockTagsProvider extends BlockTagsProvider {
     //noinspection unchecked
     tag(FWQBlocks.TAG_MINEABLE)
         .addTags(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.MINEABLE_WITH_AXE, BlockTags.MINEABLE_WITH_SHOVEL, BlockTags.MINEABLE_WITH_HOE);
+    tag(FWQBlocks.TAG_QUARRY_COMPONENT)
+        .add(FWQBlocks.MACHINE_BLOCK.get(), FWQBlocks.DRONE_STATION.get());
   }
 
 }

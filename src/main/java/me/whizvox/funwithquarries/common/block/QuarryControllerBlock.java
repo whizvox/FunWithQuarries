@@ -96,6 +96,7 @@ public class QuarryControllerBlock extends BaseEntityBlock {
 
   public enum State implements StringRepresentable {
     OFF,
+    STANDBY,
     ON,
     ERROR;
 
